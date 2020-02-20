@@ -1,15 +1,34 @@
 import React from 'react';
 import './App.css';
+import GamePage from './components/GamePage';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p> Snake </p>
-        <button> Play! </button>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isHomePage: true
+    }
+  }
+
+  render() {
+    const { isHomePage } = this.state;
+    return (
+      <div className="App">
+        {
+          isHomePage && 
+          <header className="App-header">
+            <p> Snake </p>
+            <button onClick={ () => this.setState({ isHomePage: false }) }> Play! </button>
+          </header>
+        }
+        {
+          !isHomePage &&
+          <GamePage />
+        }
+        
+      </div>
+    );
+  }
 }
 
 export default App;
