@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'dotlinebold';
+  src: url('fonts/dotlinebold-g25y-webfont.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

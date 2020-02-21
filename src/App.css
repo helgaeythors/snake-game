@@ -4,8 +4,8 @@
 
 .App-button {
   width: 20vmin;
-  height: 7vmin;
-  border-radius: 50%;
+  height: 6vmin;
+  border-radius: 15px;
   background-color: #D8FBFE;
   border: 1px solid black;
 }
@@ -15,7 +15,7 @@
 }
 
 .App-title  {
-  font-family: 'Raleway Dots', 'VT323', sans-serif;
+  font-family: 'dotlinebold', 'Raleway Dots', 'VT323', sans-serif;
   font-style: normal;
   font-weight: 400;
   color: #8F4117;
@@ -34,7 +34,7 @@
 
 .line {
   border-left: solid gray 1px;
-  height: 50vh;
+  height: 40vh;
 }
 
 @keyframes App-logo-spin {
