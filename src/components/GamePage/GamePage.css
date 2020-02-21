@@ -1,0 +1,16 @@
+.title  {
+  font-family: 'dotlinebold', 'Raleway Dots', 'VT323', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  color: #8F4117;
+  font-size: calc(70px + 1vmin);
+}
+  
+.game-page {
+  background-color: #C3DAE6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
