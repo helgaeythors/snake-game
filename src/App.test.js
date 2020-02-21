@@ -2,14 +2,14 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import App from './App';
 
-test('renders snake element', () => {
+test('renders title element', () => {
   const { getByText } = render(<App />);
-  const linkElement = getByText(/snake/i);
-  expect(linkElement).toBeInTheDocument();
+  const titleElement = getByText(/snake/i);
+  expect(titleElement).toBeInTheDocument();
 });
 
-test('renders play button', () => {
+test('renders play element', () => {
   const { getByText } = render(<App />);
-  const linkElement = getByText(/play/i);
-  expect(linkElement).toBeInTheDocument();
+  const playElement = getByText(/play/i);
+  expect(playElement).toBeInTheDocument();
 });

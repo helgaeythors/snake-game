@@ -17,8 +17,9 @@ class App extends React.Component {
         {
           isHomePage && 
           <header className="App-header">
-            <p> Snake </p>
-            <button onClick={ () => this.setState({ isHomePage: false }) }> Play! </button>
+            <p className="App-title"> Snake </p>
+            <div class="line"></div>
+            <button className="App-button" onClick={ () => this.setState({ isHomePage: false }) }> Play! </button>
           </header>
         }
         {
