@@ -18,14 +18,13 @@ class TitleCanvas extends React.Component {
     let myfont = p5.loadFont('assets/Roboto-Regular.ttf');
     this.setState({ font: myfont });
   }
-  
+
   setup = (p5, canvasParentRef) => {
     const { font } = this.state;
     p5.createCanvas(600, 400).parent(canvasParentRef);
     // convert the text to points (x, y)
     let txtPoints = font.textToPoints("Snake", 20, 260, 200, {});
     this.setState({ points: txtPoints });
-    console.log(this.state);
   }
 
   draw = (p5) => {
@@ -44,7 +43,7 @@ class TitleCanvas extends React.Component {
       else {
         baseDotColor = '#62AEFC';
       }
-      
+
       // draw the dots
       let p = points[i];
       p5.fill(baseDotColor);

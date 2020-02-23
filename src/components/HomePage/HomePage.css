@@ -14,9 +14,25 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
+  border-top: 15px solid;
+  border-bottom: 15px solid;
+  border-color: #191B21;
+  box-sizing: border-box;
+}
+
+.App-button {
+  width: 20vmin;
+  height: 6vmin;
+  border-radius: 15px;
+  background-color: #BBEDFF;
+  border: 1px solid black;
+}
+
+.App-button:hover  {
+  background-color: #738C99;
 }
 
 .line {
-  border-left: solid gray 1px;
+  border-left: solid darkgray 1px;
   height: 40vh;
 }
