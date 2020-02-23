@@ -6,8 +6,10 @@ class TitleCanvas extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      points: [], // to store the location of the text
-      font: null // to store the font used
+      // to store the location of the text
+      points: [],
+      // to store the font used
+      font: null
     }
   }
 
@@ -29,11 +31,23 @@ class TitleCanvas extends React.Component {
   draw = (p5) => {
     const { points } = this.state;
     // set background and text color
-    p5.background('#C3DAE6');
-    p5.fill('#CC845E');
+    p5.background('#282C35');
+    let baseDotColor;
     // drawing circles for each point on the text
     for (let i = 0; i < points.length; i++) {
+      // somewhat "randomizing" the colors of the dots
+      let date = new Date();
+      let seconds = date.getSeconds();
+      if (i % seconds === 0) {
+        baseDotColor = '#FFFFFF';
+      }
+      else {
+        baseDotColor = '#62AEFC';
+      }
+      
+      // draw the dots
       let p = points[i];
+      p5.fill(baseDotColor);
       p5.circle(p.x, p.y, 7);
     }
   }
