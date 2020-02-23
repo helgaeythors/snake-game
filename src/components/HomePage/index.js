@@ -1,6 +1,8 @@
 import React from 'react';
 import GamePage from '../GamePage';
 import './HomePage.css';
+import '../TitleCanvas';
+import TitleCanvas from '../TitleCanvas';
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -16,8 +18,10 @@ class HomePage extends React.Component {
           {
             isHomePage && 
             <div className="App-header">
-              <p className="App-title"> Snake </p>
-              <div class="line"></div>
+              <div className="App-title">
+                <TitleCanvas/>
+              </div>
+              <div className="line"></div>
               <button className="App-button" onClick={ () => this.setState({ isHomePage: false }) }> Play! </button>
             </div>
           }

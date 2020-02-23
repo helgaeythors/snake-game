@@ -1,11 +1,3 @@
-@font-face {
-  font-family: 'dotlinebold';
-  src: url('fonts/dotlinebold-g25y-webfont.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-
-}
-
 .App-button {
   width: 20vmin;
   height: 6vmin;
