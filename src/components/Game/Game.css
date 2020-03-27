@@ -8,15 +8,25 @@
     font-family: cursive;
 }
 
-#game-over-text {
+#game-over-container {
+    width: 200px;
+    height: 200px;
     position: absolute;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
+#game-over-button {
+    position: relative;
+    background-color: #ffffff;
+    color: black;
+}
+
 .hidden {
     opacity: 0;
+    z-index: 1;
 }
 
 .visible {
@@ -35,7 +45,7 @@
 
 .game-over {
     opacity: 0.6;
-    background-color: red;
+    background-color: #282C35;
 }
 
 .ongoing {

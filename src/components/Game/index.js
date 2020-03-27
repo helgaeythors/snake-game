@@ -9,6 +9,7 @@ const drawNode = (node) => {
     ctx.fillStyle = 'white';
     // border color
     ctx.strokestyle = 'black';
+    // draw
     ctx.fillRect(node.x, node.y, 10, 10);
     ctx.strokeRect(node.x, node.y, 10, 10);
 }
@@ -25,7 +26,7 @@ class Game extends React.Component {
                 direction: availableDirections.RIGHT,
             },
             pellet: {
-                position: {x: 0, y: 0},
+                position: {},
             }
         }
     }
@@ -39,6 +40,29 @@ class Game extends React.Component {
         // initialize pellet position
         this.setNewPelletPosition();
 
+        this.main();
+        
+    }
+    initBoard = () => {
+        // define the initial state
+        let initState = {
+            turnedThisFrame: false,
+            playerPoints: 0,
+            snake: {
+                position: [ {x: 250, y: 250},  {x: 240, y: 250}, {x: 230, y: 250} ],
+                gameOver: false,
+                direction: availableDirections.RIGHT,
+            },
+            pellet: {
+                position: {},
+            }
+        }
+
+        // call all necessary function to restart the game
+        this.whenGameRestart();
+        this.clearCanvas();
+        this.setState(initState);
+        this.setNewPelletPosition();
         this.main();
     }
     renderSnake = () => {
@@ -187,12 +211,20 @@ class Game extends React.Component {
         let canvasElement = document.getElementById('my-canvas');
         canvasElement.classList.remove('ongoing');
         canvasElement.classList.add('game-over');
-        document.getElementById('game-over-text').classList.add('visible');
+        document.getElementById('game-over-container').classList.add('visible');
+    }
+    whenGameRestart = () => {
+        let canvasElement = document.getElementById('my-canvas');
+        canvasElement.classList.add('ongoing');
+        canvasElement.classList.remove('game-over');
+        document.getElementById('game-over-container').classList.remove('visible');
+        document.getElementById('game-over-container').classList.add('hidden');
     }
     main = () => {
         const { snake } = this.state;
         // create start screen
         this.renderSnake();
+        // save the context to use inside the function below
         var that = this;
         setTimeout(function() {
             that.setState({ turnedThisFrame: false });
@@ -220,7 +252,10 @@ class Game extends React.Component {
                 </span>
                 
                 <div id="board">
-                    <h2 id="game-over-text" className="hidden">Game Over!</h2>
+                    <div id="game-over-container" className="hidden">
+                        <h2>Game Over!</h2>
+                        <button id="game-over-button" className="App-button" onClick={() => this.initBoard() }>Play again!</button>
+                    </div>
                     <canvas ref="canvas" id="my-canvas" className="ongoing" width="500" height="500">
                         Not supported
                     </canvas>
