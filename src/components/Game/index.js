@@ -59,7 +59,7 @@ class Game extends React.Component {
         }
 
         // call all necessary function to restart the game
-        this.whenGameRestart();
+        this.toggleGameOverStyles();
         this.clearCanvas();
         this.setState(initState);
         this.setNewPelletPosition();
@@ -206,19 +206,12 @@ class Game extends React.Component {
                 break;
             }
     }
-    whenGameOver = () => {
+    toggleGameOverStyles = () => {
         // set classes to elements to show the game over screen
         let canvasElement = document.getElementById('my-canvas');
-        canvasElement.classList.remove('ongoing');
-        canvasElement.classList.add('game-over');
-        document.getElementById('game-over-container').classList.add('visible');
-    }
-    whenGameRestart = () => {
-        let canvasElement = document.getElementById('my-canvas');
-        canvasElement.classList.add('ongoing');
-        canvasElement.classList.remove('game-over');
-        document.getElementById('game-over-container').classList.remove('visible');
-        document.getElementById('game-over-container').classList.add('hidden');
+        canvasElement.classList.toggle('ongoing');
+        canvasElement.classList.toggle('game-over');
+        document.getElementById('game-over-container').classList.toggle('visible');
     }
     main = () => {
         const { snake } = this.state;
@@ -237,7 +230,7 @@ class Game extends React.Component {
             that.renderSnake();
             // check if game over
             if (gameOver) {
-               that.whenGameOver();
+               that.toggleGameOverStyles();
             } else {
                 that.main();
             }
