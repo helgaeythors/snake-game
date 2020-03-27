@@ -1,6 +1,7 @@
 import React from 'react';
 import HomePage from '../HomePage';
 import './GamePage.css';
+import Game from '../Game';
 
 class GamePage extends React.Component {
     constructor(props) {
@@ -15,9 +16,9 @@ class GamePage extends React.Component {
             <>
             {
                 isGamePage && 
-                <div className={"game-page"}>
-                    <button className="App-button" onClick={ () => this.setState({ isGamePage: false }) }> Back to start </button>
-                    <p>game</p>
+                <div className="game-page">
+                    <button className="App-button back-button" onClick={ () => this.setState({ isGamePage: false }) }> Back to start </button>
+                    <Game />
                 </div>
             }
             {

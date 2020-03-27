@@ -1,0 +1,48 @@
+.heading {
+    display: flex;
+    justify-content: space-between;
+}
+
+#container {
+    padding: 10px;
+    font-family: cursive;
+}
+
+#game-over-text {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hidden {
+    opacity: 0;
+}
+
+.visible {
+    opacity: 1;
+    color: white;
+    top: 0;
+    bottom: 0;
+    left: 0; 
+    right: 0; 
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto; 
+    margin-right: auto;
+    z-index: 1;
+}
+
+.game-over {
+    opacity: 0.6;
+    background-color: red;
+}
+
+.ongoing {
+    background-color: #282C35;
+}
+
+#my-canvas {
+    margin: 0 auto;
+    display: block;
+}

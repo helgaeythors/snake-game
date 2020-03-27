@@ -10,7 +10,11 @@
   background-color: #C3DAE6;
   min-height: 100vh;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+}
+
+.back-button {
+  align-self: flex-start;
 }
