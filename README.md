@@ -1,9 +1,7 @@
 ## Snake game
 
-### Author
+### Made by
 Helga Eyþórsdóttir
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ### Try it
 
