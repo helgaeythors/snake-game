@@ -10,6 +10,9 @@ class GamePage extends React.Component {
           isGamePage: true
         }
     }
+    terminateGame = () => {
+        this.setState({ isGamePage: false });
+    }
     render() {
         const { isGamePage } = this.state;
         return(
@@ -17,8 +20,7 @@ class GamePage extends React.Component {
             {
                 isGamePage && 
                 <div className="game-page">
-                    <button className="App-button back-button" onClick={ () => this.setState({ isGamePage: false }) }> Back to start </button>
-                    <Game />
+                    <Game terminateGame={this.terminateGame} />
                 </div>
             }
             {

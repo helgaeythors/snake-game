@@ -17,6 +17,7 @@ const drawNode = (node) => {
 class Game extends React.Component {
     constructor(props) {
         super(props);
+        this._isMounted = false;
         this.state = {
             turnedThisFrame: false,
             playerPoints: 0,
@@ -31,6 +32,7 @@ class Game extends React.Component {
         }
     }
     componentDidMount(){
+        this._isMounted = true;
         this.canvas = this.refs.canvas;
         ctx = this.canvas.getContext('2d');
 
@@ -41,7 +43,9 @@ class Game extends React.Component {
         this.setNewPelletPosition();
 
         this.main();
-        
+    }
+    componentWillUnmount(){
+        this._isMounted = false;
     }
     initBoard = () => {
         // define the initial state
@@ -61,7 +65,7 @@ class Game extends React.Component {
         // call all necessary function to restart the game
         this.toggleGameOverStyles();
         this.clearCanvas();
-        this.setState(initState);
+        this._isMounted && this.setState(initState);
         this.setNewPelletPosition();
         this.main();
     }
@@ -76,7 +80,7 @@ class Game extends React.Component {
         drawNode(this.state.pellet.position);
     }
     setPoints = (number) => {
-        this.setState({ playerPoints: number });
+        this._isMounted && this.setState({ playerPoints: number });
     }
     incrementsPoints = () => {
         this.setPoints(this.state.playerPoints + 1);
@@ -96,7 +100,7 @@ class Game extends React.Component {
         return number - n;
     }
     setNewPelletPosition = () => {
-        this.setState({ pellet: { position: this.newPelletPosition() } });
+        this._isMounted && this.setState({ pellet: { position: this.newPelletPosition() } });
     }
     handleSnakeAtePellet = () => {
         const { snake, pellet } = this.state;
@@ -170,7 +174,6 @@ class Game extends React.Component {
         return true;
     }
     handleKeyDown = (event) => {
-        console.log(event);
         const { snake, turnedThisFrame } = this.state;
         // change direction based on key input, but prevent going in the opposite direction
         var key = event.keyCode;
@@ -180,28 +183,28 @@ class Game extends React.Component {
             case 37:
                 if (snake.direction !== availableDirections.RIGHT && !turnedThisFrame) {
                     snake.direction = availableDirections.LEFT;
-                    this.setState({ turnedThisFrame: true });
+                    this._isMounted && this.setState({ turnedThisFrame: true });
                 }
                 break;
             // up key
             case 38:
                 if (snake.direction !== availableDirections.DOWN && !turnedThisFrame) {
                     snake.direction = availableDirections.UP;
-                    this.setState({ turnedThisFrame: true });
+                    this._isMounted && this.setState({ turnedThisFrame: true });
                 }
                 break;
             // right key
             case 39:
                 if (snake.direction !== availableDirections.LEFT && !turnedThisFrame) {
                     snake.direction = availableDirections.RIGHT;
-                    this.setState({ turnedThisFrame: true });
+                    this._isMounted && this.setState({ turnedThisFrame: true });
                 }
                 break;
             // down key
             case 40:
                 if (snake.direction !== availableDirections.UP && !turnedThisFrame) {
                     snake.direction = availableDirections.DOWN;
-                    this.setState({ turnedThisFrame: true });
+                    this._isMounted && this.setState({ turnedThisFrame: true });
                 }
                 break;
             }
@@ -220,26 +223,31 @@ class Game extends React.Component {
         // save the context to use inside the function below
         var that = this;
         setTimeout(function() {
-            that.setState({ turnedThisFrame: false });
-            that.clearCanvas();
+            that._isMounted && that.setState({ turnedThisFrame: false });
+            that._isMounted && that.clearCanvas();
             // get the new position of the snake
-            let gameOver = that.moveSnakeIfNotGameOver(snake.direction);
+            let gameOver = that._isMounted && that.moveSnakeIfNotGameOver(snake.direction);
             // handle various conditions before rendering
-            that.handleSnakeAtePellet();
+            that._isMounted && that.handleSnakeAtePellet();
             // render the snake
-            that.renderSnake();
+            that._isMounted && that.renderSnake();
             // check if game over
             if (gameOver) {
-               that.toggleGameOverStyles();
+                that._isMounted && that.toggleGameOverStyles();
             } else {
-                that.main();
+                that._isMounted && that.main();
             }
         }, 100);
+    }
+    terminate = () => {
+        const { terminateGame } = this.props;
+        terminateGame();
     }
     render() {
         const { playerPoints } = this.state;
         return(
             <div id="container">
+                <button className="App-button back-button" onClick={ () => this.terminate() }> Back to start </button>
                 <span className="heading">
                     Points: <span id="points">{playerPoints}</span>
                 </span>
