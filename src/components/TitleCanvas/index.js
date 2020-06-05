@@ -37,7 +37,8 @@ class TitleCanvas extends React.Component {
       // somewhat "randomizing" the colors of the dots
       let date = new Date();
       let seconds = date.getSeconds();
-      if (i % seconds === 0) {
+      console.log(seconds);
+      if (i % (seconds % 20) === 0) {
         baseDotColor = '#FFFFFF';
       }
       else {
