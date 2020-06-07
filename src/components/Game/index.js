@@ -36,6 +36,18 @@ class Game extends React.Component {
         this.canvas = this.refs.canvas;
         ctx = this.canvas.getContext('2d');
 
+        // create height and width variables
+        let width = window.innerWidth - (window.innerWidth * 0.2);
+        let height = window.innerHeight - (window.innerHeight * 0.2);
+
+        // set the width and height of the canvas, according to window size
+        ctx.canvas.width  = width;
+        ctx.canvas.height = height;
+
+        // set the width and height of board div, according to window size
+        document.getElementById("board").style.width = width + "px";
+        document.getElementById("board").style.height = height + "px";
+
         // set event handler for key presses
         document.addEventListener('keydown', this.handleKeyDown);
         
@@ -239,25 +251,19 @@ class Game extends React.Component {
             }
         }, 100);
     }
-    terminate = () => {
-        const { terminateGame } = this.props;
-        terminateGame();
-    }
     render() {
         const { playerPoints } = this.state;
         return(
             <div id="container">
-                <button className="App-button back-button" onClick={ () => this.terminate() }> Back to start </button>
-                <span className="heading">
-                    Points: <span id="points">{playerPoints}</span>
-                </span>
-                
                 <div id="board">
+                    <span id="heading">
+                        Points: <span id="points">{playerPoints}</span>
+                    </span>
                     <div id="game-over-container" className="hidden">
                         <h2>Game Over!</h2>
                         <button id="game-over-button" className="App-button" onClick={() => this.initBoard() }>Play again!</button>
                     </div>
-                    <canvas ref="canvas" id="my-canvas" className="ongoing" width="500" height="500">
+                    <canvas ref="canvas" id="my-canvas" className="ongoing">
                         Not supported
                     </canvas>
                 </div>

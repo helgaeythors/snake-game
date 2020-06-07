@@ -1,16 +1,21 @@
-.heading {
+#container {
+    background-color: #C3DAE6;
+    min-height: 100vh;
+    min-width: 100vh;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-#container {
-    padding: 10px;
-    font-family: cursive;
+#my-canvas {
+    margin: 0 auto;
+    display: block;
 }
 
 #game-over-container {
-    width: 200px;
-    height: 200px;
+    width: 50vw;
+    height: 50vh;
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -52,7 +57,7 @@
     background-color: #282C35;
 }
 
-#my-canvas {
-    margin: 0 auto;
-    display: block;
+#heading {
+    display: flex;
+    justify-content: space-between;
 }
