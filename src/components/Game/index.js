@@ -36,9 +36,20 @@ class Game extends React.Component {
         this.canvas = this.refs.canvas;
         ctx = this.canvas.getContext('2d');
 
-        // create height and width variables
+        // create height and width variables, scale with 0.2
         let width = window.innerWidth - (window.innerWidth * 0.2);
         let height = window.innerHeight - (window.innerHeight * 0.2);
+
+        // make sure the width is divisible by 10 (the node size)
+        if (width % 10) {
+            // if the width modulo 10 is more then zero, then remove extra digits to make the width divisible by 10
+            width = width - (width % 10);
+        }
+
+        // make sure the height is divisible by 10 (the node size), the same way as the width
+        if (height % 10) {
+            height = height - (height % 10);
+        }
 
         // set the width and height of the canvas, according to window size
         ctx.canvas.width  = width;
